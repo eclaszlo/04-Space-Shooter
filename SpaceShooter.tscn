@@ -66,7 +66,6 @@ __meta__ = {
 }
 
 [node name="Mines" type="Node2D" parent="."]
-scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true
