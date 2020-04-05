@@ -1,1 +1,1 @@
-This is a space shooter game to practicce using Godot.
+This is a space shooter game to practice using Godot.
