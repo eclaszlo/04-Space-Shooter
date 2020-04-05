@@ -1,0 +1,124 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/Underwater BG Blank.png" type="Texture" id=1]
+[ext_resource path="res://Assets/little_submarine.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Mines.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Enemies.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Groovy-r09O.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Scripts/Bullets.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Hud.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+extra_spacing_top = 1
+extra_spacing_bottom = 1
+extra_spacing_char = 7
+extra_spacing_space = 1
+font_data = ExtResource( 5 )
+
+[node name="Game" type="Node2D"]
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Background"]
+position = Vector2( -23, -14.5325 )
+scale = Vector2( 0.5, 0.7 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+margin_top = -14.5325
+margin_right = 1039.0
+margin_bottom = 767.468
+color = Color( 1, 0.027451, 0.937255, 0.270588 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bullets" type="Node2D" parent="."]
+script = ExtResource( 6 )
+
+[node name="Timer" type="Timer" parent="Bullets"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Enemy Bullets" type="Node2D" parent="."]
+
+[node name="Player" type="KinematicBody2D" parent="."]
+position = Vector2( 539, 686 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Player"]
+rotation = -1.5708
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
+rotation = -1.5708
+scale = Vector2( 0.2, 0.2 )
+polygon = PoolVector2Array( -106, -221.8, -106, -220.4, -88, -214.4, -88, -213.3, -23.5, -182, -21.1, -182, 11.7, -191, 17.7, -191, 47.9, -195, 76.1, -195, 120, -189.3, 145.8, -195, 165, -195, 165, -193.8, 183, -191.8, 183, -190.4, 208, -180.4, 208, -178.9, 236, -154.9, 236, -152.7, 249, -135.7, 249, -133.5, 262, -107.5, 262, -104, 275, -54.3, 275, -46, 278, 25, 276.8, 25, 270.8, 77, 269.5, 77, 260.5, 111, 259.4, 111, 250.3, 133, 249.1, 133, 237.1, 153, 235.9, 153, 219.9, 171, 217.7, 171, 207.8, 180, 205.5, 180, 186.5, 190, 182.2, 190, 168.3, 194, 139, 194, 139, 192.7, 120, 188.5, 84.1, 194, 37, 194, 37, 192.8, 7, 189.8, 7, 188.7, -23.4, 182.4, -83.5, 212, -86.4, 212, -113.6, 223, -134.2, 223, -216, 208.7, -216, 207.5, -249, 199.6, -249, 198.4, -271, 190.4, -271, 188.9, -278, 182.9, -278, 174.2, -271.8, 168, -269.4, 168, -213, 147.6, -213, 146.7, -186, 134.7, -186, 133.9, -164, 119.9, -164, 119.3, -144.1, 96.4, -156, 79.6, -156, 77.3, -171, 43.4, -171, 39.4, -176, 17.2, -176, -19, -174.9, -19, -173.9, -33, -172.5, -33, -164.5, -63, -163.4, -63, -157.4, -78, -156.1, -78, -144.8, -96.2, -153.1, -110, -153.7, -110, -175.7, -129, -177.5, -129, -212.6, -148, -215.4, -148, -274, -169.6, -274, -171.2, -278, -175.2, -278, -185, -275.7, -185, -262.7, -195, -259.3, -195, -224.3, -207, -220.1, -207, -173.2, -218, -167.2, -218, -127, -222.8, -127, -224.2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Mines" type="Node2D" parent="."]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Timer" type="Timer" parent="Mines"]
+wait_time = 0.935
+autostart = true
+
+[node name="Enemies" type="Node2D" parent="."]
+position = Vector2( 0, -100 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+probability = 0.2
+
+[node name="Timer" type="Timer" parent="Enemies"]
+autostart = true
+
+[node name="Explosions" type="Node2D" parent="."]
+
+[node name="Hud" type="Node2D" parent="."]
+script = ExtResource( 7 )
+
+[node name="Health" type="Label" parent="Hud"]
+margin_left = 19.0
+margin_top = 15.0
+margin_right = 140.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 1 )
+text = "Health"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="Hud"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = 797.532
+margin_top = 4.24265
+margin_right = 918.532
+margin_bottom = 41.2426
+custom_fonts/font = SubResource( 1 )
+text = "Score"
+align = 1
+valign = 1
+[connection signal="timeout" from="Bullets/Timer" to="Bullets" method="_on_Timer_timeout"]
+[connection signal="health_changed" from="Player" to="Hud" method="_on_Player_health_changed"]
+[connection signal="score_changed" from="Player" to="Hud" method="_on_Player_score_changed"]
+[connection signal="timeout" from="Mines/Timer" to="Mines" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Enemies/Timer" to="Enemies" method="_on_Timer_timeout"]
